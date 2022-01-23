@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {Container} from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { Container } from '@mui/material';
+
+import Header from "./components/Header/Header";
 import './App.css';
 
 
@@ -19,9 +21,10 @@ const App: React.FC = () => {
   return (
       <Container maxWidth="md">
           <Header />
-        <h1>this is count</h1>
       </Container>
   );
 };
 
 export default App;
+
+
