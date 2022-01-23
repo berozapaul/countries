@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 
-import Header from "./components/Header/Header";
+
+import Preloader from "./components/common/Preloader";
+import { doSearch } from "./utils/SiteUtils";
+import { getCountries } from "./utils/APIUtils";
+import Header from "./components/header/Header";
 import './App.css';
-
-
 /*
  * Purpose: This is the main component to bootstrap the app.
  *
@@ -12,19 +14,27 @@ import './App.css';
  * Author: dev@example.com
  */
 const App: React.FC = () => {
-  const [data, setData] = useState([]);
+    const [data, setData] = useState<Array<Country>>([]);
 
-  useEffect( () => {
-     console.log('here');
-  }, []);
+    const executeSearch = (data: any) => {
+        setData(data);
+    };
 
-  return (
-      <Container maxWidth="md">
-          <Header />
-      </Container>
-  );
+    // @ts-ignore
+    useEffect(async () => {
+        const countryData = await doSearch('all', getCountries);
+        setData(countryData);
+    }, []);
+
+    return (
+        <Container maxWidth="md">
+            {data.length < 1 ? <Preloader/> :
+                <div>
+                    <Header />
+                </div>
+            }
+        </Container>
+    );
 };
 
 export default App;
-
-
