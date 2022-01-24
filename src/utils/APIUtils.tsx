@@ -8,3 +8,10 @@ export const getCountries = async (query: string) => {
     const { data } = await axios.get(apiUrl);
     return data;
 };
+
+
+export const searchCountry = async (query: string) => {
+    const apiUrl = `${URL}/${version}/name/${query}?fullText=true`;
+    const { data } = await axios.get(apiUrl);
+    return data;
+};

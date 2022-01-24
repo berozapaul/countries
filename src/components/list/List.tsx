@@ -15,7 +15,7 @@ const List = () => {
 
     let countryListStr;
     if(Array.isArray(countryList) && countryList.length > 0){
-        countryListStr = countryList.map((item) => <div>{item.name.common}</div>)
+        countryListStr = countryList.map((item) => <div key={item.name.common}>{item.name.common}</div>)
     }
     return(
         <div className="container">{countryListStr}</div>
