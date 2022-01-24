@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 
-
+import AppContext from './AppContext';
 import Preloader from "./components/common/Preloader";
 import { doSearch } from "./utils/SiteUtils";
 import { getCountries } from "./utils/APIUtils";
 import Header from "./components/header/Header";
+import List from "./components/list/List";
 import './App.css';
 /*
  * Purpose: This is the main component to bootstrap the app.
@@ -26,12 +27,15 @@ const App: React.FC = () => {
         setData(countryData);
     }, []);
 
+    const contextData = { countryList: data || [] };
+
     return (
         <Container maxWidth="md">
             {data.length < 1 ? <Preloader/> :
-                <div>
+                <AppContext.Provider value={ contextData }>
                     <Header />
-                </div>
+                    <List />
+                </AppContext.Provider>
             }
         </Container>
     );
