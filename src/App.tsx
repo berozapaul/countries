@@ -7,6 +7,7 @@ import { doSearch } from "./utils/SiteUtils";
 import { getCountries } from "./utils/APIUtils";
 import Header from "./components/header/Header";
 import Search from "./components/search/Search";
+import SearchRegion from "./components/search/SearchRegion";
 import List from "./components/list/List";
 import './App.css';
 /*
@@ -18,7 +19,7 @@ import './App.css';
 const App: React.FC = () => {
     const [data, setData] = useState<Array<Country>>([]);
 
-    const executeSearch = (data: any) => {
+    const renderSearch = (data: any) => {
         console.log(data);
         setData(data);
     };
@@ -36,7 +37,8 @@ const App: React.FC = () => {
             {data.length < 1 ? <Preloader/> :
                 <AppContext.Provider value={ contextData }>
                     <Header />
-                    <Search onSearch={executeSearch} />
+                    <Search onSearch={renderSearch} />
+                    <SearchRegion onSearch={renderSearch} />
                     <List />
                 </AppContext.Provider>
             }

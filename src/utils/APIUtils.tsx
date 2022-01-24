@@ -15,3 +15,9 @@ export const searchCountry = async (query: string) => {
     const { data } = await axios.get(apiUrl);
     return data;
 };
+
+export const searchCountryByRegion = async (query: string) => {
+    const apiUrl = `${URL}/${version}/region/${query}`;
+    const { data } = await axios.get(apiUrl);
+    return data;
+};
