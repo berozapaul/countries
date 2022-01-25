@@ -1,4 +1,8 @@
 import React from 'react';
+import {Grid} from "@mui/material";
+import Search from "../search/Search";
+import SearchRegion from "../search/SearchRegion";
+import AppContext from "../../AppContext";
 
 /*
  * Purpose: The purpose of this component is to render header nav bar.
@@ -10,8 +14,14 @@ import React from 'react';
 const Header: React.FC = () => {
     return (
         <div className="nav-container">
-            <div className="logo">Where in the world?</div>
-            <div className="mode">Dark mode</div>
+            <Grid container spacing={2}>
+                <Grid item xs={8}>
+                    <div className="logo">Where in the world?</div>
+                </Grid>
+                <Grid item xs={4}>
+                    <div className="mode">Dark mode</div>
+                </Grid>
+            </Grid>
         </div>
    );
 };

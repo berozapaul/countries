@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 import AppContext from './AppContext';
 import Preloader from "./components/common/Preloader";
@@ -43,8 +43,14 @@ const App: React.FC = () => {
             {data.length < 1 ? <Preloader/> :
                 <AppContext.Provider value={ contextData }>
                     <Header />
-                    <Search onSearch={renderSearch} />
-                    <SearchRegion onSearch={renderSearch} />
+                    <Grid container spacing={2}>
+                        <Grid item xs={8}>
+                            <Search onSearch={renderSearch} />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <SearchRegion onSearch={renderSearch} />
+                        </Grid>
+                    </Grid>
                     <ContentRoute/>
                 </AppContext.Provider>
             }
