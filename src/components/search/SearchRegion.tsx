@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, {useContext, useEffect, useState} from 'react';
-import {searchCountryByRegion} from "../../utils/APIUtils";
+import {getCountryByRegion} from "../../utils/APIUtils";
 import { doSearch } from "../../utils/SiteUtils";
 import AppContext from "../../AppContext";
 
@@ -19,7 +19,7 @@ const SearchRegion = (prop: any) => {
 
     const handleKeyUp = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         const searchStr = event.target.value;
-        const data = await doSearch(searchStr, searchCountryByRegion);
+        const data = await doSearch(searchStr, getCountryByRegion);
         prop.onSearch(data);
     };
 

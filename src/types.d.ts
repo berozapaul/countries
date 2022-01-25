@@ -1,5 +1,7 @@
 interface Country {
-  name: string;
+  name: {
+    common: string,
+  };
   population: string;
   region: string;
   capital: string;

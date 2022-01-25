@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Container } from '@mui/material';
 
 import AppContext from './AppContext';
@@ -8,7 +8,7 @@ import { getCountries } from "./utils/APIUtils";
 import Header from "./components/header/Header";
 import Search from "./components/search/Search";
 import SearchRegion from "./components/search/SearchRegion";
-import List from "./components/list/List";
+import ContentRoute from "./components/route/ContentRoute";
 import './App.css';
 /*
  * Purpose: This is the main component to bootstrap the app.
@@ -25,12 +25,18 @@ const App: React.FC = () => {
     };
 
     // @ts-ignore
+    // useMemo(async () => {
+    //     const countryData = await doSearch('all', getCountries);
+    //     setData(countryData);
+    // }, []);
+
+    // @ts-ignore
     useEffect(async () => {
         const countryData = await doSearch('all', getCountries);
         setData(countryData);
     }, []);
 
-    const contextData = { countryList: data || [] };
+    const contextData = { countryList: data || [], context: {} };
 
     return (
         <Container maxWidth="md">
@@ -39,7 +45,7 @@ const App: React.FC = () => {
                     <Header />
                     <Search onSearch={renderSearch} />
                     <SearchRegion onSearch={renderSearch} />
-                    <List />
+                    <ContentRoute/>
                 </AppContext.Provider>
             }
         </Container>
