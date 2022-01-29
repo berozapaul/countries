@@ -24,6 +24,8 @@ const App: React.FC = () => {
         setData(data);
     };
 
+    console.log('here ', new Date());
+
     // @ts-ignore
     // useMemo(async () => {
     //     const countryData = await doSearch('all', getCountries);
@@ -32,18 +34,24 @@ const App: React.FC = () => {
 
     // @ts-ignore
     useEffect(async () => {
-        const countryData = await doSearch('all', getCountries);
-        setData(countryData);
+        let countryData = localStorage.getItem('allData');
+        if(!countryData) {
+            countryData = await doSearch('all', getCountries);
+            localStorage.setItem('allData', JSON.stringify(countryData));
+        }
+        // @ts-ignore
+        setData(JSON.parse(countryData));
+
     }, []);
 
     const contextData = { countryList: data || [], context: {} };
 
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
             {data.length < 1 ? <Preloader/> :
                 <AppContext.Provider value={ contextData }>
                     <Header />
-                    <Grid container spacing={2}>
+                    <Grid container spacing={4}>
                         <Grid item xs={8}>
                             <Search onSearch={renderSearch} />
                         </Grid>

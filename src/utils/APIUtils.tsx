@@ -23,7 +23,7 @@ export const getCountryByRegion = async (query: string) => {
 };
 
 export const getCountryByName = async (query: string) => {
-    const apiUrl = `${URL}/${version}/name/${query}`;
+    const apiUrl = `${URL}/${version}/name/${query}?fullText=true`;
     const { data } = await axios.get(apiUrl);
     return data;
 };

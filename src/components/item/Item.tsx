@@ -4,6 +4,7 @@ import AppContext from '../../AppContext';
 import {doSearch} from "../../utils/SiteUtils";
 import {getCountryByName} from "../../utils/APIUtils";
 import Preloader from "../common/Preloader";
+import { Grid, Card, CardMedia, CardContent } from "@mui/material";
 
 /*
  * Purpose: The purpose of this component is to render item details.
@@ -19,23 +20,41 @@ const Item = () => {
 
     // @ts-ignore
     useEffect(async () => {
-        const data = await doSearch(context.slug, getCountryByName);
+        const countryName = context.slug.replaceAll('-', ' ');
+        const data = await doSearch(countryName, getCountryByName);
         setData(data);
     }, []);
 
     const goHome = () => {
-        navigate("/", { replace: true });
+        window.location.href='/';
     };
 
     if (data.length < 1) {
         return <Preloader/>
     }
-    const country = data[0];
+    const item = data[0];
 
     return(
         <div className="container">
-            {country.name.common}
-            <button type="button" onClick={goHome}>Back</button>
+            <Grid container spacing={4}>
+                <Grid item xs={12}>
+                    <button type="button" onClick={goHome}>Back</button>
+                </Grid>
+                <Grid item xs={6}>
+                    <Card>
+                        <CardMedia
+                            component="img"
+                            image={`${item.flags.png}`}
+                            alt={`${item.name.common}`}
+                        />
+                    </Card>
+                </Grid>
+                <Grid item xs={6}>
+                    <CardContent>
+                        <h1>{item.name.common}</h1>
+                    </CardContent>
+                </Grid>
+            </Grid>
         </div>
    )
 };

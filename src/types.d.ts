@@ -5,6 +5,7 @@ interface Country {
   population: string;
   region: string;
   capital: string;
+  flags: {png: string};
 }
 
 
