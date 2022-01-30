@@ -35,7 +35,7 @@ const App: React.FC = () => {
 
     }, []);
 
-    const contextData = { countryList: data || [], context: {} };
+    const contextData = { countryList: data || [], contextMeta: {} };
 
     return (
         <Container maxWidth="md">

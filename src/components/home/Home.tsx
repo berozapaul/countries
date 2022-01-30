@@ -16,24 +16,28 @@ import SearchRegion from "../search/SearchRegion";
  */
 
 const Home = () => {
-    const { context } = useContext(AppContext);
-    const [data, setData] = useState('');
+    const context = useContext(AppContext);
+    const { contextMeta } = context;
+    const [slug, setSlug] = useState('');
+    const [data, setData] = useState<Array<Country>>([]);
+
 
     useEffect(() => {
-        const slug = getSlug(false);
-        context.slug = slug;
-        setData(slug);
+        const countrySlug = getSlug(false);
+        contextMeta.slug = countrySlug;
+        setSlug(countrySlug);
     }, []);
 
     const renderSearch = (data: any) => {
+        context.countryList = data;
         setData(data);
     };
 
     return(
         <div>
-            {data ? <Item/> :
-                <>
-                    <Grid container spacing={4}>
+            {slug ? <Item/> :
+                <div>
+                    <Grid container spacing={4} className="search-container">
                         <Grid item xs={8}>
                             <Search onSearch={renderSearch} />
                         </Grid>
@@ -42,7 +46,7 @@ const Home = () => {
                         </Grid>
                     </Grid>
                     <List/>
-                </>
+                </div>
             }
         </div>
    )

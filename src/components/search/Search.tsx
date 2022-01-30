@@ -25,7 +25,7 @@ const Search = (prop: any) => {
         <div className="search">
             <input type="text"
                    onKeyUp={handleKeyUp}
-                   placeholder="Search Country"
+                   placeholder="&#128269; Search for a country..."
             />
         </div>
     );

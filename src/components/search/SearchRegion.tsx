@@ -35,6 +35,7 @@ const SearchRegion = (prop: any) => {
     return (
         <div className="search">
             <select onChange={handleKeyUp}>
+                <option>Filter by Region</option>
                 {
                     regions.map((region) => <option key={region}>{region}</option>)
                 }

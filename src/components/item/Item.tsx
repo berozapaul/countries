@@ -3,7 +3,7 @@ import AppContext from '../../AppContext';
 import {doSearch} from "../../utils/SiteUtils";
 import {getCountryByName} from "../../utils/APIUtils";
 import Preloader from "../common/Preloader";
-import { Grid, Card, CardMedia, CardContent } from "@mui/material";
+import { Grid, Card, CardMedia } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 /*
@@ -15,11 +15,11 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Item = () => {
     const [data, setData] = useState<Array<Country>>([]);
-    const { context } = useContext(AppContext);
+    const { contextMeta } = useContext(AppContext);
 
     // @ts-ignore
     useEffect(async () => {
-        const countryName = context.slug.replaceAll('-', ' ');
+        const countryName = contextMeta.slug.replaceAll('-', ' ');
         const data = await doSearch(countryName, getCountryByName);
         setData(data);
     }, []);
@@ -32,7 +32,6 @@ const Item = () => {
         return <Preloader/>
     }
     const item = data[0];
-    console.log(item);
     let nativeNameList: string[] = [];
     let languages: string[] = [];
     let currencies: string[] = [];
