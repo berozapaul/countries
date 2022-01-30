@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Grid } from '@mui/material';
+import { Container } from '@mui/material';
 
 import AppContext from './AppContext';
 import Preloader from "./components/common/Preloader";
 import { doSearch } from "./utils/SiteUtils";
 import { getCountries } from "./utils/APIUtils";
 import Header from "./components/header/Header";
-import Search from "./components/search/Search";
-import SearchRegion from "./components/search/SearchRegion";
 import ContentRoute from "./components/route/ContentRoute";
 import './App.css';
 /*
@@ -18,13 +16,6 @@ import './App.css';
  */
 const App: React.FC = () => {
     const [data, setData] = useState<Array<Country>>([]);
-
-    const renderSearch = (data: any) => {
-        console.log(data);
-        setData(data);
-    };
-
-    console.log('here ', new Date());
 
     // @ts-ignore
     // useMemo(async () => {
@@ -47,18 +38,10 @@ const App: React.FC = () => {
     const contextData = { countryList: data || [], context: {} };
 
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
             {data.length < 1 ? <Preloader/> :
                 <AppContext.Provider value={ contextData }>
                     <Header />
-                    <Grid container spacing={4}>
-                        <Grid item xs={8}>
-                            <Search onSearch={renderSearch} />
-                        </Grid>
-                        <Grid item xs={4}>
-                            <SearchRegion onSearch={renderSearch} />
-                        </Grid>
-                    </Grid>
                     <ContentRoute/>
                 </AppContext.Provider>
             }

@@ -1,8 +1,6 @@
 import React from 'react';
 import {Grid} from "@mui/material";
-import Search from "../search/Search";
-import SearchRegion from "../search/SearchRegion";
-import AppContext from "../../AppContext";
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 /*
  * Purpose: The purpose of this component is to render header nav bar.
@@ -14,12 +12,12 @@ import AppContext from "../../AppContext";
 const Header: React.FC = () => {
     return (
         <div className="nav-container">
-            <Grid container spacing={2}>
-                <Grid item xs={8}>
-                    <div className="logo">Where in the world?</div>
+            <Grid container spacing={2} sx={{ py: 3 }}>
+                <Grid item xs={10}>
+                    <div className="logo"><b>Where in the world?</b></div>
                 </Grid>
-                <Grid item xs={4}>
-                    <div className="mode">Dark mode</div>
+                <Grid item xs={2}>
+                    <div className="mode align">Dark mode <DarkModeIcon/></div>
                 </Grid>
             </Grid>
         </div>
