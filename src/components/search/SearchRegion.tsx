@@ -20,7 +20,7 @@ const SearchRegion = (prop: any) => {
     const handleKeyUp = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         const searchStr = event.target.value;
         const data = await doSearch(searchStr, getCountryByRegion);
-        prop.onSearch(data);
+        prop.onSearch(data || []);
     };
 
     // @ts-ignore

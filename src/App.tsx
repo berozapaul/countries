@@ -38,7 +38,7 @@ const App: React.FC = () => {
     const contextData = { countryList: data || [], contextMeta: {} };
 
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
             {data.length < 1 ? <Preloader/> :
                 <AppContext.Provider value={ contextData }>
                     <Header />

@@ -17,7 +17,7 @@ const Search = (prop: any) => {
         if (event.keyCode === 13) {
             const searchStr = (event.target as HTMLInputElement).value;
             const data = await doSearch(searchStr, searchCountry);
-            prop.onSearch(data);
+            prop.onSearch(data || []);
         }
     };
 

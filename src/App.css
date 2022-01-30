@@ -55,10 +55,16 @@
   background: white;
   cursor: pointer;
 }
+.country-list h3{font-size: 20px;margin-bottom: 15px;}
+.country-list .list-item{min-height: 300px;}
+.country-list .info{margin-bottom: 5px;font-size: 13px;}
+.country-list .info span{color: #ccc;}
+
 .search-container{margin-top: 45px !important; margin-bottom: 45px;}
 .search-container input{height: 35px;width: 50%;padding-left: 10px;}
 .search-container select{height: 35px;width: 50%;padding-left: 10px;float: right;}
 .search-container .MuiGrid-item{padding-top: 0 !important;}
+
 .details-container h1{margin-top: 0}
 .details .info{margin-bottom: 10px;}
 .details .info span{color: #ccc;}
@@ -71,6 +77,8 @@
   color: #ccc;
   margin-right: 5px;
 }
+
+.preloader{text-align: center;}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

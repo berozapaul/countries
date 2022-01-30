@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import AppContext from '../../AppContext';
 import {Grid, Card, Typography, CardContent, CardActionArea, Box } from '@mui/material';
 import { generateSlug } from "../../utils/SiteUtils";
+import Preloader from "../common/Preloader";
 /*
  * Purpose: The purpose of this component is to render list of countries.
  *
@@ -13,20 +14,37 @@ const List = () => {
     const context = useContext(AppContext);
     const { countryList } = context;
 
-    return(
+    if (countryList.length < 1) {
+        return (
+            <p>Data is not available yet.</p>
+        )
+    }
 
-        <Grid container spacing={2} direction="row">
+    return(
+        <Grid container spacing={3} direction="row" className="country-list">
             {
                 countryList.map((item: any) => {
                     return (
-                        <Grid item xs={12} sm={6} md={3} key={countryList.indexOf(item)}>
+                        <Grid item xs={12} sm={6} md={3} key={countryList.indexOf(item)} >
                             <CardActionArea href={`/${generateSlug(item.name.common)}`}>
-                                <Card>
+                                <Card className="list-item">
                                     <Box sx={{backgroundImage: `url(${item.flags.svg})`}} className='item-img'/>
                                     <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h3">
+                                        <Typography gutterBottom variant="h3" component="h3">
                                             {`${item.name.common}`}
                                         </Typography>
+                                        { item.population ?
+                                            <div className="info"><label>Population: </label><span>{item.population}</span></div>
+                                            : ''
+                                        }
+                                        {item.region ?
+                                            <div className="info"><label>Region: </label><span>{item.region}</span></div>
+                                            : ''
+                                        }
+                                        {item.capital?.length > 0 ?
+                                            <div className="info"><label>Capital: </label><span>{item.capital[0]}</span></div>
+                                            : ''
+                                        }
                                     </CardContent>
                                 </Card>
                             </CardActionArea>
