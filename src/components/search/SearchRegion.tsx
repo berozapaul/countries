@@ -30,7 +30,7 @@ const SearchRegion = (prop: any) => {
                 .filter((value, index, self) => self.indexOf(value) === index);
             setRegions(regions);
         }
-    }, []);
+    }, [countryList]);
 
     return (
         <div className="search">

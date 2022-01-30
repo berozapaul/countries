@@ -12,11 +12,11 @@ import Preloader from "../common/Preloader";
 
 const List = () => {
     const context = useContext(AppContext);
-    const { countryList } = context;
+    const { countryList, isSearch } = context;
 
     if (countryList.length < 1) {
         return (
-            <p>Data is not available yet.</p>
+            isSearch ? <p>Data is not available yet.</p> : <Preloader/>
         )
     }
 

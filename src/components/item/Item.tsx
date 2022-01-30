@@ -15,11 +15,11 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Item = () => {
     const [data, setData] = useState<Array<Country>>([]);
-    const { contextMeta } = useContext(AppContext);
+    const { slug } = useContext(AppContext);
 
     // @ts-ignore
     useEffect(async () => {
-        const countryName = contextMeta.slug.replaceAll('-', ' ');
+        const countryName = slug.replaceAll('-', ' ');
         const data = await doSearch(countryName, getCountryByName);
         setData(data);
     }, []);

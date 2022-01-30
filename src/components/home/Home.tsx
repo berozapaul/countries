@@ -1,12 +1,12 @@
 import React, {useEffect, useState, useContext} from 'react';
 import AppContext from '../../AppContext';
-import {getSlug} from "../../utils/SiteUtils";
+import {doSearch} from "../../utils/SiteUtils";
 import Item from "../item/Item";
 import List from "../list/List";
-import Preloader from "../common/Preloader";
 import {Grid} from "@mui/material";
 import Search from "../search/Search";
 import SearchRegion from "../search/SearchRegion";
+import {getCountries} from "../../utils/APIUtils";
 
 /*
  * Purpose: The purpose of this component is to render home.
@@ -17,19 +17,22 @@ import SearchRegion from "../search/SearchRegion";
 
 const Home = () => {
     const context = useContext(AppContext);
-    const { contextMeta } = context;
-    const [slug, setSlug] = useState('');
+    const { slug } = context;
     const [data, setData] = useState<Array<Country>>([]);
 
-
-    useEffect(() => {
-        const countrySlug = getSlug(false);
-        contextMeta.slug = countrySlug;
-        setSlug(countrySlug);
+    // @ts-ignore
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async () => {
+        if (!slug) {
+            const countryData = await doSearch('all', getCountries);
+            context.countryList = countryData;
+            setData(countryData);
+        }
     }, []);
 
     const renderSearch = (data: any) => {
         context.countryList = data;
+        context.isSearch = true;
         setData(data);
     };
 
