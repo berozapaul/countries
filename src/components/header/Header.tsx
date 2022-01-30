@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid} from "@mui/material";
+import {Grid, Container} from "@mui/material";
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 /*
@@ -12,14 +12,16 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 const Header: React.FC = () => {
     return (
         <div className="nav-container">
-            <Grid container spacing={2} sx={{ py: 3 }}>
-                <Grid item xs={10}>
-                    <div className="logo"><b>Where in the world?</b></div>
+            <Container maxWidth="lg">
+                <Grid container spacing={2} sx={{ py: 3 }}>
+                    <Grid item xs={10}>
+                        <div className="logo"><b>Where in the world?</b></div>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <div className="mode align">Dark mode <DarkModeIcon/></div>
+                    </Grid>
                 </Grid>
-                <Grid item xs={2}>
-                    <div className="mode align">Dark mode <DarkModeIcon/></div>
-                </Grid>
-            </Grid>
+            </Container>
         </div>
    );
 };

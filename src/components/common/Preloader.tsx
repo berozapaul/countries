@@ -1,5 +1,4 @@
 import React from 'react';
-import preloader from '../../assets/preloader.gif';
 
 /*
  * Purpose: The purpose of this component is to render a preloader gif.
@@ -10,8 +9,7 @@ import preloader from '../../assets/preloader.gif';
 
 const Preloader = () =>{
     return(
-        <div className="preloader">
-            <img src={preloader} alt="preloader"/>
+        <div className="preloader spinner">
         </div>
    )
 };

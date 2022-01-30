@@ -18,34 +18,21 @@ const App: React.FC = () => {
     const [data, setData] = useState<Array<Country>>([]);
 
     // @ts-ignore
-    // useMemo(async () => {
-    //     const countryData = await doSearch('all', getCountries);
-    //     setData(countryData);
-    // }, []);
-
-    // @ts-ignore
     useEffect(async () => {
-        let countryData = localStorage.getItem('allData');
-        if(!countryData) {
-            countryData = await doSearch('all', getCountries);
-            localStorage.setItem('allData', JSON.stringify(countryData));
-        }
-        // @ts-ignore
-        setData(JSON.parse(countryData));
+        const countryData = await doSearch('all', getCountries);
+        setData(countryData);
 
     }, []);
 
     const contextData = { countryList: data || [], contextMeta: {} };
 
     return (
-        <Container maxWidth="lg">
-            {data.length < 1 ? <Preloader/> :
-                <AppContext.Provider value={ contextData }>
-                    <Header />
-                    <ContentRoute/>
-                </AppContext.Provider>
-            }
-        </Container>
+        <AppContext.Provider value={ contextData }>
+            <Header />
+            <Container maxWidth="lg">
+                {data.length < 1 ? <Preloader/> : <ContentRoute/>}
+            </Container>
+        </AppContext.Provider>
     );
 };
 
