@@ -19,15 +19,25 @@ const SearchRegion = (prop: any) => {
 
     const handleKeyUp = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         const searchStr = event.target.value;
+
+        if(!searchStr) {
+            return;
+        }
+        
         const data = await doSearch(searchStr, getCountryByRegion);
         prop.onSearch(data || []);
     };
 
     // @ts-ignore
     useEffect(async () => {
+        if(context.regions) {
+            return;
+        }
+
         if(Array.isArray(countryList) && countryList.length > 0) {
             const regions = countryList.map(item => item.region)
                 .filter((value, index, self) => self.indexOf(value) === index);
+            context.regions = regions;
             setRegions(regions);
         }
     }, [countryList]);
@@ -35,7 +45,7 @@ const SearchRegion = (prop: any) => {
     return (
         <div className="search">
             <select onChange={handleKeyUp}>
-                <option>Filter by Region</option>
+                <option value="">Filter by Region</option>
                 {
                     regions.map((region) => <option key={region}>{region}</option>)
                 }

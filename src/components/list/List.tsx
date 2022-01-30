@@ -34,7 +34,7 @@ const List = () => {
                                             {`${item.name.common}`}
                                         </Typography>
                                         { item.population ?
-                                            <div className="info"><label>Population: </label><span>{item.population}</span></div>
+                                            <div className="info"><label>Population: </label><span>{item.population.toLocaleString()}</span></div>
                                             : ''
                                         }
                                         {item.region ?

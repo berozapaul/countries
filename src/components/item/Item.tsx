@@ -21,7 +21,7 @@ const Item = () => {
     useEffect(async () => {
         const countryName = slug.replaceAll('-', ' ');
         const data = await doSearch(countryName, getCountryByName);
-        setData(data);
+        setData(data || []);
     }, []);
 
     const goHome = () => {
@@ -80,7 +80,7 @@ const Item = () => {
                                     : ''
                                 }
                                 { item.population ?
-                                    <div className="info"><label>Population: </label><span>{item.population}</span></div>
+                                    <div className="info"><label>Population: </label><span>{item.population.toLocaleString()}</span></div>
                                     : ''
                                 }
                                 {item.region ?
